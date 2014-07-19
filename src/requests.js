@@ -5,11 +5,34 @@
  *
  */
 
+/**
+ * @method makeCallback
+ * @private
+ * @ignore
+ * @param {Function} callback - function or value
+ * @returns {Function} callback
+ * @memberof Radio.Requests
+ */
 function makeCallback(callback) {
   return _.isFunction(callback) ? callback : _.constant(callback);
 }
 
+/**
+ * A messaging system for requesting data.
+ * @mixin
+ * @memberof Radio
+ */
 Radio.Requests = {
+
+  /**
+   * Make a request for `requestName`. Optionally pass arguments to send along
+   * to the callback. Returns the reply, if one exists. If there is no request
+   * then `undefined` will be returned.
+   * @param {String} name
+   * @param {*}      [args...]
+   * @returns result of callback
+   * @memberof Radio.Requests
+   */
   request: function(name) {
     var args = slice.call(arguments, 1);
     var channelName = this._channelName;
@@ -28,6 +51,16 @@ Radio.Requests = {
     }
   },
 
+  /**
+   * Register a handler for `requestName` on this object. `callback` will be
+   * executed whenever the request is made. Optionally pass a `context` for the
+   * callback, defaulting to `this`.
+   * @param {String}   name
+   * @param {Function} callback
+   * @param {Object}   context
+   * @returns this
+   * @memberof Radio.Requests
+   */
   reply: function(name, callback, context) {
     this._requests || (this._requests = {});
 
@@ -39,6 +72,15 @@ Radio.Requests = {
     return this;
   },
 
+  /**
+   * Register a handler for `requestName` that will only be called a single
+   * time.
+   * @param {String}   name
+   * @param {Function} callback
+   * @param {Object}   context
+   * @returns this
+   * @memberof Radio.Requests
+   */
   replyOnce: function(name, callback, context) {
     var self = this;
 
@@ -50,6 +92,13 @@ Radio.Requests = {
     return this.reply(name, once, context);
   },
 
+  /**
+   * If `requestName` is passed then this method will remove that reply.
+   * Otherwise, all replies are removed from the object.
+   * @param {String} name
+   * @returns this
+   * @memberof Radio.Requests
+   */
   stopReplying: function(name) {
     var store = this._requests;
 

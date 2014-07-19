@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
 
   require('load-grunt-tasks')(grunt);
+  grunt.loadTasks('tasks');
 
   // Project configuration.
   grunt.initConfig({
@@ -129,6 +130,13 @@ module.exports = function(grunt) {
         files: ['src/**/*.js', 'test/spec/**/*.js'],
         tasks: ['test']
       }
+    },
+
+    dox: {
+      radio: {
+        src: 'src',
+        dest: 'doc'
+      }
     }
   });
 
@@ -144,6 +152,10 @@ module.exports = function(grunt) {
     'storeCoverage',
     'makeReport',
     'coveralls'
+  ]);
+
+  grunt.registerTask('docs', 'Generate documentation for the library', [
+    'dox'
   ]);
 
   grunt.registerTask('build', 'Build the library', [

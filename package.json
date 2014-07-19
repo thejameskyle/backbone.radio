@@ -43,7 +43,10 @@
     "underscore": ">=1.3.3 <=1.6.0"
   },
   "devDependencies": {
+    "bluebird": "^2.2.2",
     "chai": "^1.9.1",
+    "dox": "^0.4.6",
+    "fs-extra": "^0.10.0",
     "grunt": "~0.4.5",
     "grunt-contrib-concat": "^0.4.0",
     "grunt-contrib-jshint": "^0.10.0",
@@ -55,9 +58,11 @@
     "grunt-mocha-test": "^0.11.0",
     "grunt-preprocess": "4.0.0",
     "grunt-template": "^0.2.3",
+    "jsdoc": "git://github.com/thejameskyle/jsdoc.git",
     "load-grunt-tasks": "^0.4.0",
     "mocha": "^1.20.1",
     "sinon": "^1.10.2",
-    "sinon-chai": "^2.5.0"
+    "sinon-chai": "^2.5.0",
+    "underscore": "^1.6.0"
   }
 }

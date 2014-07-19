@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.css">
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Backbone.Radio</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <% _.each(dox, function(item) { %>
+        <% var id = _.uniqueId(); %>
+
+        <div class="panel panel-default">
+          <% if (item.ctx) { %>
+            <div class="panel-heading">
+              <h4>
+                <%= item.ctx.string %>
+                <small><%= item.ctx.type %></small>
+              </h4>
+            </div>
+          <% } %>
+
+          <div class="panel-body">
+            <%= item.description.summary %>
+          </div>
+
+          <table class="table">
+            <tbody>
+              <% _.each(item.tags, function(tag) { %>
+                <tr>
+                  <th><%= tag.type %></th>
+                  <td><%= tag.string || tag.local || tag.name %></td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" href="#dox-source-<%= id %>">Dox Source</a>
+            </h4>
+          </div>
+          <div class="collapse panel-body" id="dox-source-<%= id %>">
+            <pre><%= JSON.stringify(item, null, 2).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;') %></pre>
+          </div>
+        </div>
+
+      <% }); %>
+    </div>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.js"></script>
+  </body>
+</html>
+
