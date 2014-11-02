@@ -1,0 +1,129 @@
+
+> backbone.radio@0.7.0 perf /Users/thejameskyle/git/marionette/backbone.radio
+> node --trace_opt --trace_deopt --allow-natives-syntax test/performance/optimize.js
+
+[deoptimize context: 47e760414b1]
+[marking a 0x2d07cdf59e10 for recompilation, reason: small function, ICs with typeinfo: 2/5 (40%)]
+[optimizing: a / 2d07cdf59e11 - took 0.268, 0.337, 0.000 ms]
+[marking NativeModule.require 0x47e760606f0 for recompilation, reason: small function, ICs with typeinfo: 9/12 (75%)]
+[optimizing: NativeModule.require / 47e760606f1 - took 0.864, 0.830, 0.000 ms]
+[marking  0x2d07cdf96290 for recompilation, reason: hot and stable, ICs with typeinfo: 0/0 (100%)]
+[optimizing:  / 2d07cdf96291 - took 0.091, 0.076, 0.000 ms]
+[marking setTime 0x47e7604ca90 for recompilation, reason: small function, ICs with typeinfo: 1/3 (33%)]
+[marking CreateDate 0x47e76051238 for recompilation, reason: small function, ICs with typeinfo: 2/2 (100%)]
+[optimizing: CreateDate / 47e76051239 - took 0.085, 0.091, 0.000 ms]
+[optimizing: setTime / 47e7604ca91 - took 0.062, 0.070, 0.000 ms]
+[marking UseSparseVariant 0x47e76049b20 for recompilation, reason: small function, ICs with typeinfo: 0/3 (0%)]
+[optimizing: UseSparseVariant / 47e76049b21 - took 0.059, 0.112, 0.000 ms]
+[marking nullCheck 0x24d55634dcd8 for recompilation, reason: small function, ICs with typeinfo: 2/6 (33%)]
+[marking exports._makeLong 0x47e7606fc10 for recompilation, reason: small function, ICs with typeinfo: 0/0 (100%)]
+[optimizing: nullCheck / 24d55634dcd9 - took 0.046, 0.072, 0.000 ms]
+[optimizing: exports._makeLong / 47e7606fc11 - took 0.010, 0.014, 0.000 ms]
+[marking ToObject 0x47e76051068 for recompilation, reason: small function, ICs with typeinfo: 0/4 (0%)]
+[disabled optimization for ToObject, reason: call to a JavaScript runtime function]
+[marking $Array.set_ 0x47e7604ed90 for recompilation, reason: small function, ICs with typeinfo: 1/1 (100%)]
+[optimizing: $Array.set_ / 47e7604ed91 - took 0.020, 0.030, 0.000 ms]
+[marking $Array.enumerable_ 0x47e7604ed00 for recompilation, reason: small function, ICs with typeinfo: 1/1 (100%)]
+[optimizing: $Array.enumerable_ / 47e7604ed01 - took 0.010, 0.018, 0.000 ms]
+[marking $Array.configurable_ 0x47e7604e958 for recompilation, reason: small function, ICs with typeinfo: 1/1 (100%)]
+[marking IsDataDescriptor 0x47e7604e008 for recompilation, reason: small function, ICs with typeinfo: 2/2 (100%)]
+[marking IsAccessorDescriptor 0x47e7604a448 for recompilation, reason: small function, ICs with typeinfo: 2/2 (100%)]
+[optimizing: IsDataDescriptor / 47e7604e009 - took 0.021, 0.041, 0.000 ms]
+[optimizing: $Array.configurable_ / 47e7604e959 - took 0.016, 0.017, 0.000 ms]
+[optimizing: IsAccessorDescriptor / 47e7604a449 - took 0.017, 0.035, 0.000 ms]
+[disabled optimization for Radio.Requests.request, reason: bad value context for arguments value]
+**** DEOPT: NativeModule.require at bailout #10, address 0x0, frame size 120
+[deoptimizing: begin 0x47e760606f1 NativeModule.require @10]
+  translating NativeModule.require => node=63, height=16
+    0x7fff5fbfd498: [top + 56] <- 0x24d5563341d9 ; [sp + 160] 0x24d5563341d9 <JS Function NativeModule>
+    0x7fff5fbfd490: [top + 48] <- 0x31a708e16db1 ; [sp + 152] 0x31a708e16db1 <String[7]: console>
+    0x7fff5fbfd488: [top + 40] <- 0x242729b90472 ; caller's pc
+    0x7fff5fbfd480: [top + 32] <- 0x7fff5fbfd4b0 ; caller's fp
+    0x7fff5fbfd478: [top + 24] <- 0x24d556375f69; context
+    0x7fff5fbfd470: [top + 16] <- 0x47e760606f1; function
+    0x7fff5fbfd468: [top + 8] <- 0x47e76004121 ; rax 0x47e76004121 <undefined>
+    0x7fff5fbfd460: [top + 0] <- 0x47e76004121 <undefined> ; literal
+  translating NativeModule.exists => node=2, height=0
+    0x7fff5fbfd458: [top + 40] <- 0x24d5563341d9 ; rdx 0x24d5563341d9 <JS Function NativeModule>
+    0x7fff5fbfd450: [top + 32] <- 0x31a708e16db1 ; [sp + 152] 0x31a708e16db1 <String[7]: console>
+    0x7fff5fbfd448: [top + 24] <- 0x242729b2d5eb ; caller's pc
+    0x7fff5fbfd440: [top + 16] <- 0x7fff5fbfd480 ; caller's fp
+    0x7fff5fbfd438: [top + 8] <- 0x24d556375f69; context
+    0x7fff5fbfd430: [top + 0] <- 0x47e76060781; function
+[deoptimizing: end 0x47e76060781 NativeModule.exists => node=2, pc=0x242729b2d866, state=NO_REGISTERS, alignment=no padding, too>> Function 'request' is not optimized
+>> Function 'reply' is not optimized
+>> Function 'replyOnce' is optimized
+>> Function 'stopReplying' is optimized
+>> Function 'command' is not optimized
+>> Function 'comply' is not optimized
+>> Function 'complyOnce' is optimized
+>> Function 'stopComplying' is optimized
+>> Function 'Channel' is optimized
+>> Function 'channel' is not optimized
+>> Function 'request' is optimized
+>> Function 'reply' is optimized
+>> Function 'replyOnce' is optimized
+>> Function 'stopReplying' is optimized
+k 0.036 ms]
+[removing optimized code for: NativeModule.require]
+[optimizing: Radio.Requests.reply / 2d07ccf3c199 - took 0.082, 0.151, 0.000 ms]
+**** DEOPT: Radio.Requests.reply at bailout #5, address 0x0, frame size 48
+[deoptimizing: begin 0x2d07ccf3c199 Radio.Requests.reply @5]
+  translating Radio.Requests.reply => node=34, height=8
+    0x7fff5fbfd830: [top + 64] <- 0x2d07ccf3e5f1 ; [sp + 104] 0x2d07ccf3e5f1 <an Object>
+    0x7fff5fbfd828: [top + 56] <- 0x47e76004121 ; [sp + 96] 0x47e76004121 <undefined>
+    0x7fff5fbfd820: [top + 48] <- 0x47e76004121 ; [sp + 88] 0x47e76004121 <undefined>
+    0x7fff5fbfd818: [top + 40] <- 0x47e76004121 ; [sp + 80] 0x47e76004121 <undefined>
+    0x7fff5fbfd810: [top + 32] <- 0x242729b0a96e ; caller's pc
+    0x7fff5fbfd808: [top + 24] <- 0x7fff5fbfd850 ; caller's fp
+    0x7fff5fbfd800: [top + 16] <- 0x2d07ccf2a229; context
+    0x7fff5fbfd7f8: [top + 8] <- 0x2d07ccf3c199; function
+    0x7fff5fbfd7f0: [top + 0] <- 0x2d07ccf87f89 ; rax 0x2d07ccf87f89 <an Object>
+[deoptimizing: end 0x2d07ccf3c199 Radio.Requests.reply => node=34, pc=0x242729b9d6f1, state=TOS_REG, alignment=no padding, took 0.017 ms]
+[removing optimized code for: Radio.Requests.reply]
+[optimizing: Radio.Requests.replyOnce / 2d07ccf3c1e1 - took 0.028, 0.082, 0.000 ms]
+[optimizing: Radio.Requests.stopReplying / 2d07ccf3c229 - took 0.031, 0.086, 0.000 ms]
+[disabled optimization for Radio.Commands.command, reason: bad value context for arguments value]
+[optimizing: Radio.Commands.comply / 2d07ccf3c079 - took 0.028, 0.090, 0.000 ms]
+**** DEOPT: Radio.Commands.comply at bailout #5, address 0x0, frame size 32
+[deoptimizing: begin 0x2d07ccf3c079 Radio.Commands.comply @5]
+  translating Radio.Commands.comply => node=34, height=8
+    0x7fff5fbfd830: [top + 64] <- 0x2d07ccf3e5b9 ; [sp + 88] 0x2d07ccf3e5b9 <an Object>
+    0x7fff5fbfd828: [top + 56] <- 0x47e76004121 ; [sp + 80] 0x47e76004121 <undefined>
+    0x7fff5fbfd820: [top + 48] <- 0x47e76004121 ; [sp + 72] 0x47e76004121 <undefined>
+    0x7fff5fbfd818: [top + 40] <- 0x47e76004121 ; [sp + 64] 0x47e76004121 <undefined>
+    0x7fff5fbfd810: [top + 32] <- 0x242729b0a96e ; caller's pc
+    0x7fff5fbfd808: [top + 24] <- 0x7fff5fbfd850 ; caller's fp
+    0x7fff5fbfd800: [top + 16] <- 0x2d07ccf2a229; context
+    0x7fff5fbfd7f8: [top + 8] <- 0x2d07ccf3c079; function
+    0x7fff5fbfd7f0: [top + 0] <- 0x2d07ccf91e81 ; rax 0x2d07ccf91e81 <an Object>
+[deoptimizing: end 0x2d07ccf3c079 Radio.Commands.comply => node=34, pc=0x242729ba4011, state=TOS_REG, alignment=no padding, took 0.015 ms]
+[removing optimized code for: Radio.Commands.comply]
+[optimizing: Radio.Commands.complyOnce / 2d07ccf3c0c1 - took 0.023, 0.074, 0.000 ms]
+[optimizing: Radio.Commands.stopComplying / 2d07ccf3c109 - took 0.029, 0.074, 0.000 ms]
+[optimizing: Radio.Channel / 24d556370109 - took 0.014, 0.021, 0.000 ms]
+[optimizing: Radio.channel / 24d5563700c1 - took 0.030, 0.073, 0.000 ms]
+**** DEOPT: Radio.channel at bailout #7, address 0x0, frame size 24
+[deoptimizing: begin 0x24d5563700c1 Radio.channel @7]
+  translating Radio.channel => node=33, height=8
+    0x7fff5fbfd860: [top + 48] <- 0x2d07ccf060b9 ; [sp + 64] 0x2d07ccf060b9 <an Object>
+    0x7fff5fbfd858: [top + 40] <- 0x31a708e2b639 ; [sp + 56] 0x31a708e2b639 <String[11]: channelName>
+    0x7fff5fbfd850: [top + 32] <- 0x242729b63f2f ; caller's pc
+    0x7fff5fbfd848: [top + 24] <- 0x7fff5fbfd888 ; caller's fp
+    0x7fff5fbfd840: [top + 16] <- 0x2d07ccf2a229; context
+    0x7fff5fbfd838: [top + 8] <- 0x24d5563700c1; function
+    0x7fff5fbfd830: [top + 0] <- 0x2d07ccf94e61 ; rax 0x2d07ccf94e61 <JS Object>
+[deoptimizing: end 0x24d5563700c1 Radio.channel => node=33, pc=0x242729ba6aa1, state=TOS_REG, alignment=no padding, took 0.014 ms]
+[removing optimized code for: Radio.channel]
+[optimizing: Radio.(anonymous function) / 24d556370731 - took 0.057, 0.127, 0.000 ms]
+[found optimized code for: Radio.(anonymous function) / 24d556370779]
+[found optimized code for: Radio.(anonymous function) / 24d5563707c1]
+[found optimized code for: Radio.(anonymous function) / 24d556370809]
+[found optimized co>> Function 'command' is optimized
+>> Function 'comply' is optimized
+>> Function 'complyOnce' is optimized
+>> Function 'stopComplying' is optimized
+de for: Radio.(anonymous function) / 24d556370611]
+[found optimized code for: Radio.(anonymous function) / 24d556370659]
+[found optimized code for: Radio.(anonymous function) / 24d5563706a1]
+[found optimized code for: Radio.(anonymous function) / 24d5563706e9]

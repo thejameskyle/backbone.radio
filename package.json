@@ -24,7 +24,8 @@
   ],
   "scripts": {
     "test": "grunt",
-    "coverage": "grunt coverage"
+    "coverage": "grunt coverage",
+    "perf": "node --trace_opt --trace_deopt --allow-natives-syntax test/performance/optimize.js"
   },
   "author": {
     "name": "Jmeas",
@@ -45,6 +46,7 @@
   },
   "devDependencies": {
     "chai": "^1.9.1",
+    "chalk": "^0.5.1",
     "grunt": "~0.4.5",
     "grunt-contrib-concat": "^0.4.0",
     "grunt-contrib-jshint": "^0.10.0",
