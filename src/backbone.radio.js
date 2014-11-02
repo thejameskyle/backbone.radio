@@ -166,7 +166,14 @@ Radio.Commands = {
 
   // Issue a command
   command: function(name) {
-    var args = _.rest(arguments);
+    var len = arguments.length, args;
+    if (len > 1) {
+      args = new Array(len - 1);
+      for (var i = 1; i < len; ++i) {
+        args[i - 1] = args[i];
+      }
+    }
+
     if (eventsApi(this, 'command', name, args)) {
       return this;
     }
@@ -181,7 +188,7 @@ Radio.Commands = {
     // If the command isn't handled, log it in DEBUG mode and exit
     if (commands && (commands[name] || commands['default'])) {
       var handler = commands[name] || commands['default'];
-      args = commands[name] ? args : arguments;
+      args = commands[name] ? args : [name].concat(args);
       callHandler(handler.callback, handler.context, args);
     } else {
       debugLog('An unhandled command was fired', name, channelName);
@@ -195,6 +202,7 @@ Radio.Commands = {
     if (eventsApi(this, 'comply', name, [callback, context])) {
       return this;
     }
+
     this._commands || (this._commands = {});
 
     if (this._commands[name]) {
@@ -256,7 +264,13 @@ Radio.Requests = {
 
   // Make a request
   request: function(name) {
-    var args = _.rest(arguments);
+    var len = arguments.length, args;
+    if (len > 1) {
+      args = new Array(len - 1);
+      for (var i = 1; i < len; ++i) {
+        args[i - 1] = args[i];
+      }
+    }
     var results = eventsApi(this, 'request', name, args);
     if (results) {
       return results;
@@ -272,7 +286,7 @@ Radio.Requests = {
     // If the request isn't handled, log it in DEBUG mode and exit
     if (requests && (requests[name] || requests['default'])) {
       var handler = requests[name] || requests['default'];
-      args = requests[name] ? args : arguments;
+      args = requests[name] ? args : [name].concat(args);
       return callHandler(handler.callback, handler.context, args);
     } else {
       debugLog('An unhandled request was fired', name, channelName);
