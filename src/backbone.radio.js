@@ -63,13 +63,18 @@ function eventsApi(obj, action, name, rest) {
 
 // An optimized way to execute callbacks.
 function callHandler(callback, context, args) {
-  var a1 = args[0], a2 = args[1], a3 = args[2];
-  switch(args.length) {
+  var len = args.length;
+  switch(len) {
     case 0: return callback.call(context);
-    case 1: return callback.call(context, a1);
-    case 2: return callback.call(context, a1, a2);
-    case 3: return callback.call(context, a1, a2, a3);
-    default: return callback.apply(context, args);
+    case 1: return callback.call(context, args[0]);
+    case 2: return callback.call(context, args[0], args[1]);
+    case 3: return callback.call(context, args[0], args[1], args[2]);
+    default:
+      var _args = new Array(len);
+      for (var i = 0; i < len; ++i) {
+        _args[i] = args[i];
+      }
+      return callback.apply(context, _args);
   }
 }
 
@@ -380,14 +385,30 @@ _.extend(Radio.Channel.prototype, Backbone.Events, Radio.Commands, Radio.Request
  *
  */
 
-var channel, args, systems = [Backbone.Events, Radio.Commands, Radio.Requests];
+var systems = [Backbone.Events, Radio.Commands, Radio.Requests];
 
 _.each(systems, function(system) {
   _.each(system, function(method, methodName) {
     Radio[methodName] = function(channelName) {
-      args = _.rest(arguments);
-      channel = this.channel(channelName);
-      return channel[methodName].apply(channel, args);
+      var args = arguments, len = args.length;
+
+      if (len < 2) {
+        return;
+      }
+
+      var channel = this.channel(channelName);
+
+      switch(len) {
+        case 2: return channel[methodName](args[1]);
+        case 3: return channel[methodName](args[1], args[2]);
+        case 4: return channel[methodName](args[1], args[2], args[3]);
+        default:
+          var _args = new Array(len - 1);
+          for (var i = 1; i < len; ++i) {
+            _args[i - 1] = args[i];
+          }
+          return channel[methodName].apply(channel, _args);
+      }
     };
   });
 });
